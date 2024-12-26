@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tictactoe:dev": "pnpm --filter @amg-dev/tic-tac-toe run dev",
+    "tictactoe:build": "pnpm --filter @amg-dev/tic-tac-toe run build",
+    "tictactoe:test": "pnpm --filter @amg-dev/tic-tac-toe run test",
+    "tictactoe:deploy": "pnpm --filter @amg-dev/tic-tac-toe run deploy",
+    "tictactoe:preview": "pnpm --filter @amg-dev/tic-tac-toe run preview"
   },
   "keywords": [],
   "author": "",
