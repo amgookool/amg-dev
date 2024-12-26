@@ -23,8 +23,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     echo "set-option -g history-limit 100000"
     echo "set-option -g allow-rename off"
     echo "set -g @plugin 'tmux-plugins/tmux-sensible'"
-    echo "set -g @plugin 'briansalehi/tmux-acpi'"
     echo "set -g @plugin 'dracula/tmux'"
     echo "run -b '~/.tmux/plugins/tpm/tpm'"
-
 } > ~/.tmux.conf
