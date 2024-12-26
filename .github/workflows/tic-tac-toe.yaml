@@ -1,0 +1,48 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/tic-tac-toe/**"
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    strategy:
+      matrix:
+        node-version: [22.x]
+        project:
+          - "apps/tic-tac-toe"
+    runs-on: ubuntu-latest
+    name: Deploy to Cloudflare Pages
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install Node.js ${{ matrix.node-version}}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      - name: Build application
+        working-directory: ${{ matrix.project }}
+        run: pnpm --filter @amg-dev/tic-tac-toe run build
+
+      - name: Wrangler Action
+        uses: cloudflare/wrangler-action@v3
+        with:
+          workingDirectory: ${{ matrix.project}}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy .svelte-kit/cloudflare --project tic-tac-toe
