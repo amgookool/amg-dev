@@ -12,9 +12,12 @@
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint .",
     "test:unit": "vitest",
+    "test:coverage": "vitest --coverage",
     "test": "pnpm run test:unit -- --run && pnpm run test:e2e",
     "test:e2e": "playwright test",
     "deploy": "pnpm run build && wrangler pages deploy",
+    "setup:playwright-deps": "pnpm exec playwright install-deps",
+    "setup:playwright": "pnpm exec playwright install",
     "cf-typegen": "wrangler types && mv worker-configuration.d.ts src/"
   },
   "devDependencies": {
@@ -28,6 +31,7 @@
     "@sveltejs/adapter-cloudflare": "^4.9.0",
     "@sveltejs/kit": "^2.9.0",
     "@sveltejs/vite-plugin-svelte": "^5.0.0",
+    "@vitest/coverage-v8": "^2.1.8",
     "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.22",
     "eslint": "^9.7.0",
