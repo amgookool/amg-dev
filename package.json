@@ -7,10 +7,15 @@
     "tictactoe:dev": "pnpm --filter @amg-dev/tic-tac-toe run dev",
     "tictactoe:build": "pnpm --filter @amg-dev/tic-tac-toe run build",
     "tictactoe:test": "pnpm --filter @amg-dev/tic-tac-toe run test",
+    "tictactoe:test-coverage": "pnpm --filter @amg-dev/tic-tac-toe run test:coverage",
     "tictactoe:deploy": "pnpm --filter @amg-dev/tic-tac-toe run deploy",
     "tictactoe:preview": "pnpm --filter @amg-dev/tic-tac-toe run preview"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
 }
