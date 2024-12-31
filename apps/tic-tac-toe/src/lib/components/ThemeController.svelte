@@ -1,8 +1,73 @@
-<script lang="ts"></script>
+<script module lang="ts">
+	const themeValues = [
+		// 'light',
+		// 'dark',
+		// 'cupcake',
+		// 'bumblebee',
+		// 'emerald',
+		// 'corporate',
+		// 'retro',
+		// 'cyberpunk',
+		// 'valentine',
+		// 'garden',
+		// 'fantasy',
+		// 'black',
+		// 'cmyk',
+		// 'acid',
+		// 'nord',
+		// 'sunset'
+		// 'business',
+		// 'lemonade',
+		'dark',
+		'synthwave',
+		'halloween',
+		'forest',
+		'aqua',
+		// 'lofi',
+		'pastel',
+		'wireframe',
+		'luxury',
+		'dracula',
+		'autumn',
+		'night',
+		'coffee',
+		'winter',
+		'dim',
+	];
+	const themes = themeValues.map((theme) => {
+		return {
+			label: theme.charAt(0).toUpperCase() + theme.slice(1),
+			value: theme
+		};
+	});
+</script>
 
-<div class="dropdown mb-72">
+<script lang="ts">
+	let currentTheme = $state<string | null>('dark');
+
+	$effect(() => {
+		currentTheme = document.documentElement.getAttribute('data-theme');
+	});
+
+	const handleThemeChange = (theme: string) => {
+		document.documentElement.setAttribute('data-theme', theme);
+		currentTheme = theme;
+	};
+</script>
+
+{#snippet themeItem(props: { label: string; value: string })}
+	<input
+		class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+		type="radio"
+		name="theme-dropdown"
+		aria-label={props.label}
+		value={props.value}
+	/>
+{/snippet}
+
+<div class="dropdown dropdown-bottom dropdown-end">
 	<div tabindex="0" role="button" class="btn m-1">
-		Theme
+		{currentTheme}
 		<svg
 			width="12px"
 			height="12px"
@@ -13,52 +78,15 @@
 			<path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
 		</svg>
 	</div>
+
 	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 	<ul tabindex="0" class="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl">
-		<li>
-			<input
-				type="radio"
-				name="theme-dropdown"
-				class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-				aria-label="Default"
-				value="default"
-			/>
-		</li>
-		<li>
-			<input
-				type="radio"
-				name="theme-dropdown"
-				class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-				aria-label="Retro"
-				value="retro"
-			/>
-		</li>
-		<li>
-			<input
-				type="radio"
-				name="theme-dropdown"
-				class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-				aria-label="Cyberpunk"
-				value="cyberpunk"
-			/>
-		</li>
-		<li>
-			<input
-				type="radio"
-				name="theme-dropdown"
-				class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-				aria-label="Valentine"
-				value="valentine"
-			/>
-		</li>
-		<li>
-			<input
-				type="radio"
-				name="theme-dropdown"
-				class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-				aria-label="Aqua"
-				value="aqua"
-			/>
-		</li>
+		{#each themes as theme}
+			<li>
+				<button class="w-full" onclick={() => handleThemeChange(theme.value)}>
+					{@render themeItem(theme)}
+				</button>
+			</li>
+		{/each}
 	</ul>
 </div>
