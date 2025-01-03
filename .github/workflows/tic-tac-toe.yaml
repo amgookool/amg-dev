@@ -53,7 +53,7 @@ jobs:
           overwrite: true
 
   test:
-    if: github.event_name == 'pull_request'
+    if: github.event.pull_request.base.ref == 'main'
     strategy:
       matrix:
         node-version: [22.x]
