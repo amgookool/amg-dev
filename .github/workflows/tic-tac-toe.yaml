@@ -5,11 +5,14 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - "apps/tic-tac-toe/**"
   push:
     branches:
       - main
     paths:
       - "apps/tic-tac-toe/**"
+
 jobs:
   build:
     if: github.event_name == 'push'  && github.ref == 'refs/heads/main'
