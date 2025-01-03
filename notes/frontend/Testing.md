@@ -22,7 +22,6 @@ System testing is the process of testing the entire software application as a wh
 
 Acceptance testing is the process of testing the software with end users to verify that it meets their requirements and that it is ready for release. The goal of acceptance testing is to ensure that the software is user-friendly, reliable, and meets the needs of the users. Acceptance testing is typically performed after system testing, and is often performed manually by testers.
 
-
 ## 3.0 Testing Frameworks
 
 There are many different testing frameworks available for testing software applications. Some of the most popular testing frameworks include JUnit, TestNG, NUnit, and Selenium. These frameworks provide tools and utilities for writing and running tests, and help to automate the testing process. Testing frameworks are an important part of the testing process, as they help to ensure that tests are repeatable, reliable, and easy to maintain.
