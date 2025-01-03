@@ -5,6 +5,7 @@ export const BoardState = $state({
     winner: null as 'X' | 'O' | null,
     isDraw: false as boolean,
     isGameOver: false as boolean,
+    winningCombination: [] as number[],
 
     setCell(index: number, symbol: 'X' | 'O') {
         this.cells[index] = symbol;
@@ -30,6 +31,7 @@ export const BoardState = $state({
         this.cells = Array(9).fill(null);
         this.disabledCells = Array(9).fill(false);
         this.currentPlayer = 'X';
+        this.winningCombination = [];
         this.winner = null;
         this.isDraw = false;
         this.isGameOver = false;
@@ -47,6 +49,8 @@ export const BoardState = $state({
             // check if the cells are not null and are equal for winner
             if (this.cells[a] && this.cells[a] === this.cells[b] && this.cells[a] === this.cells[c]) {
                 this.setWinner(this.cells[a]);
+                this.currentPlayer = this.cells[a] === 'X' ? 'O' : 'X';
+                this.winningCombination = combination;
                 this.disabledCells = Array(9).fill(true);
                 this.setGameOver();
                 return;
