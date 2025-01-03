@@ -23,9 +23,11 @@ export const PlayersState = $state({
 		this.totalGames++;
 	},
 
-	resetScores() {
+	reset(){
+		this.X.name = 'Player X';
+		this.O.name = 'Player O';
 		this.X.wins = 0;
-        this.O.wins = 0;
-        this.totalGames = 0;
-	}
+		this.O.wins = 0;
+		this.totalGames = 0;
+	},
 });
