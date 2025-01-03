@@ -1,0 +1,5 @@
+--container-architecture=linux/amd64
+--platform=ubuntu-latest=node:22-slim
+--action-offline-mode
+--artifact-server-path=artifacts
+--secret-file=act.secrets

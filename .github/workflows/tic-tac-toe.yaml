@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-    if: github.event_name == 'push'  && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     strategy:
       matrix:
         node-version: [22.x]
@@ -48,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: tic-tac-toe-build
-          path: ${{ matrix.project }}/.svelte-kit
+          path: ${{ matrix.project }}/.svelte-kit/cloudflare
           if-no-files-found: error
           overwrite: true
 
@@ -79,8 +79,34 @@ jobs:
       - name: Install dependencies
         run: pnpm install --filter @amg-dev/tic-tac-toe
 
+      - name: Cache Playwright dependencies
+        uses: actions/cache@v4
+        id: cache-playwright
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+      
+      - name: Install Playwright dependencies
+        run: pnpm exec playwright install-deps
+        working-directory: ${{ matrix.project }}
+      
+      - name: Install Playwright
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: pnpm exec playwright install --with-deps chromium
+        working-directory: ${{ matrix.project }}
+
       - name: Test application
         run: pnpm --filter @amg-dev/tic-tac-toe test
+      
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tic-tac-toe-test-report
+          path: ${{ matrix.project }}/playwright-report
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 20
 
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -103,12 +129,15 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: tic-tac-toe-build
-          path: ${{ matrix.project }}/.svelte-kit
+          path: ${{ matrix.project }}/.svelte-kit/cloudflare
+      
+      - name: List files in build artifact
+        run: ls -R ${{ matrix.project }}/.svelte-kit/cloudflare
 
       - name: Wrangler Action
         uses: cloudflare/wrangler-action@v3
         with:
-          workingDirectory: ${{ matrix.project}}
+          workingDirectory: ${{ matrix.project }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          # accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy .svelte-kit/cloudflare --project tic-tac-toe
+          accountId: 76f7114fb17f4aee549aa69dfc126fed
+          command: pages deploy .svelte-kit/cloudflare --project-name tic-tac-toe
