@@ -114,6 +114,14 @@
 	<div class={cn('absolute bg-accent', getStrikeThroughString(winningCombination))}></div>
 {/snippet}
 
+{#snippet drawStrike()}
+	<div class={['absolute bg-accent','top-[16%] left-[12%] h-2 w-[70%]']}></div>
+	<div class={['absolute bg-accent','left-[80%] top-[16%] h-[35%] w-2']}></div>
+	<div class={['absolute bg-accent','top-[50%] left-[12%] h-2 w-[70.5%]']}></div>
+	<div class={['absolute bg-accent','left-[12%] top-[50%] h-[35%] w-2']}></div>
+	<div class={['absolute bg-accent','top-[83.5%] left-[12%] h-2 w-[70%]']}></div>
+{/snippet}
+
 <section class="flex w-full flex-col items-center justify-center">
 	<div class="relative">
 		{#each [0, 1, 2] as row}
@@ -129,6 +137,9 @@
 		{/each}
 		{#if BoardState.winningCombination.length > 0 && BoardState.winner}
 			{@render boardStrikes(BoardState.winningCombination)}
+		{/if}
+		{#if BoardState.isDraw}
+			{@render drawStrike()}
 		{/if}
 	</div>
 	{#if BoardState.winner}
