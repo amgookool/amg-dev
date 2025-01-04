@@ -2,6 +2,10 @@ import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 import daisyui, { Config as DaisyConfig } from 'daisyui';
 import { iconsPlugin, getIconCollections } from '@egoist/tailwindcss-icons';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import tailwindcssMotion from "tailwindcss-motion";
+
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
@@ -32,6 +36,7 @@ export default {
 		iconsPlugin({
 			collections: getIconCollections(['lucide', 'mdi'])
 		}),
+		tailwindcssMotion,
 		daisyui
 	],
 
