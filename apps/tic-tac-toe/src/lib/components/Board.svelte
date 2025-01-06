@@ -3,6 +3,7 @@
 	import { BoardState } from '$lib/states/board.svelte';
 	import { PlayersState } from '$lib/states/players.svelte';
 	import { cn } from '$lib/utils';
+	import { blur, scale, slide } from 'svelte/transition';
 
 	export const tilePlayerColor = (value: 'X' | 'O' | null) => {
 		if (value === 'X') return 'text-primary';
@@ -111,19 +112,37 @@
 {/snippet}
 
 {#snippet boardStrikes(winningCombination: number[])}
-	<div class={cn('absolute bg-accent', getStrikeThroughString(winningCombination))}></div>
+	<div
+		transition:blur={{ duration: 600 }}
+		class={cn('bg-accent absolute', getStrikeThroughString(winningCombination))}
+	></div>
 {/snippet}
 
 {#snippet drawStrike()}
-	<div class={['absolute bg-accent','top-[16%] left-[12%] h-2 w-[70%]']}></div>
-	<div class={['absolute bg-accent','left-[80%] top-[16%] h-[35%] w-2']}></div>
-	<div class={['absolute bg-accent','top-[50%] left-[12%] h-2 w-[70.5%]']}></div>
-	<div class={['absolute bg-accent','left-[12%] top-[50%] h-[35%] w-2']}></div>
-	<div class={['absolute bg-accent','top-[83.5%] left-[12%] h-2 w-[70%]']}></div>
+	<div
+		transition:slide={{ axis: 'x', duration: 500 }}
+		class={['bg-accent absolute', 'left-[12%] top-[16%] h-2 w-[70%]']}
+	></div>
+	<div
+		transition:slide={{ axis: 'y', duration: 500, delay: 50 }}
+		class={['bg-accent absolute', 'left-[80%] top-[16%] h-[35%] w-2']}
+	></div>
+	<div
+		transition:slide={{ axis: 'x', duration: 500, delay: 100 }}
+		class={['bg-accent absolute', 'left-[12%] top-[50%] h-2 w-[70.5%]']}
+	></div>
+	<div
+		transition:slide={{ axis: 'y', duration: 500, delay: 150 }}
+		class={['bg-accent absolute', 'left-[12%] top-[50%] h-[35%] w-2']}
+	></div>
+	<div
+		transition:slide={{ axis: 'x', duration: 500, delay: 200 }}
+		class={['bg-accent absolute', 'left-[12%] top-[83.5%] h-2 w-[70%]']}
+	></div>
 {/snippet}
 
 <section class="flex w-full flex-col items-center justify-center">
-	<div class="relative">
+	<div transition:scale={{ delay: 1500 }} class="relative">
 		{#each [0, 1, 2] as row}
 			<div class="flex">
 				{#each [0, 1, 2] as col}
@@ -138,24 +157,43 @@
 		{#if BoardState.winningCombination.length > 0 && BoardState.winner}
 			{@render boardStrikes(BoardState.winningCombination)}
 		{/if}
-		{#if BoardState.isDraw}
+		{#if BoardState.isDraw && !BoardState.winner}
 			{@render drawStrike()}
 		{/if}
 	</div>
-	{#if BoardState.winner}
-		<h2 class="text-accent mt-2 text-2xl font-semibold">
-			Winner: {BoardState.winner === 'X' ? PlayersState.X.name : PlayersState.O.name}
-		</h2>
-	{:else}
-		<h2 class="text-accent mt-2 text-2xl font-semibold">
-			Current Player: {BoardState.currentPlayer === 'X' ? PlayersState.X.name : PlayersState.O.name}
-		</h2>
-	{/if}
-	<div class="mt-4 flex items-center justify-center gap-4">
+	<div transition:scale={{ delay: 2000 }} class="mt-4 flex items-center justify-center gap-4">
+		{#if BoardState.winner}
+			<h2
+				class={[
+					'text-accent mt-2 text-2xl font-semibold',
+					BoardState.winner === 'X' && 'text-primary',
+					BoardState.winner === 'O' && 'text-secondary',
+					BoardState.winner &&
+						'motion-preset-confetti motion-duration-[10000ms] motion-ease-in-out-cubic '
+				]}
+			>
+				Winner: {BoardState.winner === 'X' ? PlayersState.X.name : PlayersState.O.name}
+			</h2>
+		{:else}
+			<h2
+				class={[
+					'mt-2 text-2xl font-semibold',
+					BoardState.currentPlayer === 'X' && 'text-primary',
+					BoardState.currentPlayer === 'O' && 'text-secondary'
+				]}
+			>
+				Current Player: {BoardState.currentPlayer === 'X'
+					? PlayersState.X.name
+					: PlayersState.O.name}
+			</h2>
+		{/if}
+	</div>
+	<div transition:scale={{ delay: 2500 }} class="mt-4 flex items-center justify-center gap-4">
 		<button onclick={navigateHome} class="btn btn-lg sm:btn-block btn-accent btn-outline"
 			>Main Menu</button
 		>
 		<button
+			disabled={!BoardState.winner && !BoardState.isDraw}
 			onclick={() => BoardState.resetGame()}
 			type="button"
 			class="btn btn-lg sm:btn-block btn-accent btn-outline">Play Again</button
