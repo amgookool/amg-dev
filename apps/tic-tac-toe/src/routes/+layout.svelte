@@ -1,14 +1,8 @@
 <script lang="ts">
 	import Navbar from '$lib/components/Navbar.svelte';
-	import { onMount } from 'svelte';
-	import { themeChange } from 'theme-change';
 	import '../app.css';
-	
-	let { children } = $props();
 
-	onMount(() => {
-		themeChange(false);
-	});
+	let { children } = $props();
 </script>
 
 <svelte:head>
