@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { PlayersState } from '$lib/states/players.svelte';
 	import { BoardState } from '$lib/states/board.svelte';
-	import { fade, scale, fly, blur, draw, crossfade, slide } from 'svelte/transition';
-	import { backOut, backIn, backInOut, bounceIn, cubicOut } from 'svelte/easing';
+	import { PlayersState } from '$lib/states/players.svelte';
 	import { cn } from '$lib/utils';
-	
+	import { fly, scale, slide } from 'svelte/transition';
+
 	let draws = $derived(PlayersState.totalGames - PlayersState.O.wins - PlayersState.X.wins);
 
 	type CardProps = {
@@ -16,7 +15,7 @@
 
 {#snippet card(props: CardProps)}
 	<h1
-		transition:fade
+		transition:scale={{ delay: 900, duration: 400 }}
 		class={cn(
 			'container flex w-full items-center justify-between rounded-full p-4',
 			'bg-neutral text-neutral-content',
@@ -28,6 +27,7 @@
 		{#if props.player === 'X'}
 			<!-- Symbol -->
 			<svg
+				transition:fly={{ delay: 1500, duration: 500, y: 100 }}
 				class={cn(
 					'i-lucide-x size-7',
 					BoardState.currentPlayer !== 'X' && 'text-neutral-content animate-flip',
@@ -36,6 +36,7 @@
 			/>
 			<!-- Name -->
 			<span
+				transition:fly={{ delay: 1500, duration: 500, y: 100 }}
 				class={cn(
 					'text-accent text-xl font-semibold',
 					BoardState.currentPlayer === 'X' && 'text-primary animate-pulse'
@@ -44,16 +45,23 @@
 				{props.name}
 			</span>
 			<!-- Wins -->
-			<span class={cn('text-error text-xl font-bold')}>
+			<span
+				transition:fly={{ delay: 1500, duration: 500, y: 100 }}
+				class={cn('text-error text-xl font-bold')}
+			>
 				{props.wins}
 			</span>
 		{:else}
 			<!-- Wins -->
-			<span class={cn('text-error text-xl font-bold')}>
+			<span
+				transition:fly={{ delay: 1500, duration: 500, y: 100 }}
+				class={cn('text-error text-xl font-bold')}
+			>
 				{props.wins}
 			</span>
 			<!-- Name -->
 			<span
+				transition:fly={{ delay: 1500, duration: 500, y: 100 }}
 				class={cn(
 					'text-accent text-xl font-semibold',
 					BoardState.currentPlayer === 'O' && 'text-secondary animate-pulse'
@@ -63,6 +71,7 @@
 			</span>
 			<!-- Symbol -->
 			<svg
+				transition:fly={{ delay: 1500, duration: 500, y: 100 }}
 				class={cn(
 					'i-lucide-circle size-7',
 					BoardState.currentPlayer !== 'O' && 'text-neutral-content animate-flip',
@@ -73,14 +82,20 @@
 	</h1>
 {/snippet}
 
-<section class={cn('flex w-full items-center justify-between sm:w-2/5')}>
+<section
+	transition:slide={{ axis: 'y', delay: 500 }}
+	class={cn('flex w-full items-center justify-between sm:w-2/5')}
+>
 	{@render card({
 		player: 'X',
 		name: PlayersState.X.name,
 		wins: PlayersState.X.wins
 	})}
 
-	<h1 transition:fly class={cn('flex flex-col items-center justify-center px-4 text-2xl')}>
+	<h1
+		transition:scale={{ delay: 1000 }}
+		class={cn('flex flex-col items-center justify-center px-4 text-2xl')}
+	>
 		<span class={cn('text-error text-2xl font-bold')}>{draws}</span>
 		<span class="i-lucide-swords text-error animate-wiggle-slow size-8"> Draws </span>
 	</h1>
