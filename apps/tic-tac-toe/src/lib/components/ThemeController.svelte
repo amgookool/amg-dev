@@ -18,12 +18,12 @@
 		// 'sunset'
 		// 'business',
 		// 'lemonade',
+		// 'lofi',
+		// 'aqua',
 		'dark',
 		'synthwave',
 		'halloween',
 		'forest',
-		'aqua',
-		// 'lofi',
 		'pastel',
 		'wireframe',
 		'luxury',
@@ -32,7 +32,7 @@
 		'night',
 		'coffee',
 		'winter',
-		'dim',
+		'dim'
 	];
 	const themes = themeValues.map((theme) => {
 		return {
@@ -43,13 +43,23 @@
 </script>
 
 <script lang="ts">
+	import { onMount } from 'svelte';
 	let currentTheme = $state<string | null>('dark');
+
+	onMount(() => {
+		const localStorageTheme = localStorage.getItem('theme');
+		if (localStorageTheme) {
+			document.documentElement.setAttribute('data-theme', localStorageTheme);
+			currentTheme = localStorageTheme;
+		}
+	});
 
 	$effect(() => {
 		currentTheme = document.documentElement.getAttribute('data-theme');
 	});
 
-	const handleThemeChange = (theme: string) => {
+	export const handleThemeChange = (theme: string) => {
+		localStorage.setItem('theme', theme);
 		document.documentElement.setAttribute('data-theme', theme);
 		currentTheme = theme;
 	};
@@ -62,6 +72,7 @@
 		name="theme-dropdown"
 		aria-label={props.label}
 		value={props.value}
+		checked={currentTheme === props.value}
 	/>
 {/snippet}
 
