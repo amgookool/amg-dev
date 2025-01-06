@@ -1,22 +1,17 @@
-import { describe, it, expect } from 'vitest';
-
-import { tilePlayerColor, tileBorderStyles } from '$lib/components/Board.svelte';
-
-// Helper function to compare class strings ignoring order
-const areClassesEquivalent = (class1: string, class2: string): boolean => {
-	const set1 = new Set(class1.split(" ").filter(Boolean));
-	const set2 = new Set(class2.split(" ").filter(Boolean));
-	return set1.size === set2.size && [...set1].every((cls) => set2.has(cls));
-  };
+import { tileBorderStyles, tilePlayerColor } from '$lib/components/Board.svelte';
+import { describe, expect, it } from 'vitest';
+import { areClassesEquivalent } from './helpers';
 
 
 describe('Board components functionality', () => {
+	// Test for primary and secondary text colors based on player
 	it('func should return the primary text color for X and secondary text color for O.', () => {
 		expect(tilePlayerColor('X')).toBe('text-primary');
 		expect(tilePlayerColor('O')).toBe('text-secondary');
 		expect(tilePlayerColor(null)).toBe(''); // default
 	});
-	it('func should return the appropiate tailwindcss boarder class to make up board', () => {
+	// Test for tailwindcss string for tile borders
+	it('func should return the appropiate tailwindcss border class to make up board', () => {
 		const tileBorderIndexStyles: Record<number, string> = {
 			0: 'border-e-2 border-b-2',
 			1: 'border-b-2',
