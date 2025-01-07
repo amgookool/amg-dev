@@ -45,14 +45,14 @@ When creating branches, i would like you to categorize them into the following c
 When creating commit messages, analyze the changes that was made in the file and write a brief high level overview of the changes that was made. Additionally, if the commit is related to a specific issue, please reference the issue number in the commit message. You will use emojis to categorize the commit messages. Here are the emojis that you will use along with their corresponding categories:
 
 - ✨: New Features or functionalities
-- 🐛: Bug Fixes
-- 🚑: Hotfixes
-- ♻️: Refactor
-- 📝: Documenation
-- 🧹: Chore
+- 🐛: Bug Fixes changes
+- 🚑: Hotfixes changes
+- ♻️: Refactor changes
+- 📝: Documenation changes
+- 🧹: Chore changes
 - 🎨: Style(Formatting - no code) changes
 - ⚡ : Performance Improvements
-- 🧪: Testing
+- 🧪: Testing related changes
 - 🚀: Deployment
 - 📦: Dependency Updates
 - 🛠: Configuration Changes
