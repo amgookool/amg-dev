@@ -76,7 +76,7 @@
 	/>
 {/snippet}
 
-<div class="dropdown dropdown-bottom dropdown-end">
+<div data-testId="theme-controller" class="dropdown dropdown-bottom dropdown-end">
 	<div tabindex="0" role="button" class="btn m-1">
 		{currentTheme}
 		<svg
