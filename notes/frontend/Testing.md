@@ -61,7 +61,7 @@ Usability testing is the process of testing the usability of a web application t
 
 ### 4.5 Testing Tools and Strategies
 
-When developing web applications, especially those that uses a frontend framework like React, Svete, or Angular, it is critical to split the application into components and test each component individually. This can be done using testing frameworks like `Jest`, `Mocha`, or `Vitest`. These tools help write **unit** tests for each component, and ensure that the components work as expected. Additionally, we can also write **integration** tests to test the interactions between different components.
+When developing web applications, especially those that uses a frontend framework like React, Svete, or Angular, it is critical to split the application into components and test each component individually. This can be done using testing frameworks like `Jest`, `Mocha`, or `Vitest`. These tools help write **unit** tests for each component, and ensure that the components work as expected based on various input conditions. Additionally, we can also write **integration** tests to test the interactions between different components.
 
 System testing can be done using tools like `Cypress` or `Playwright`. These tools help write end-to-end tests that simulate user interactions with the web application. This can help verify that the web application meets the requirements of the users and that it performs as expected in a real-world environment.
 
@@ -85,4 +85,33 @@ Security testing is the process of testing the security of a mobile application 
 
 Usability testing is the process of testing the usability of a mobile application to verify that it is user-friendly and easy to use. The goal of usability testing is to ensure that the mobile application is intuitive and that it meets the needs of the users. Usability testing is typically performed by testers, and is often performed manually.
 
+## Testing Management Services
+
+### Appium Test Management Service
+
+Appium is a cross-platform mobile testing framework that enables automation of mobile applications using standard webDriver protocols.
+
+**Pros**:
+
+- Supports multiple platforms (iOS, Android, Web)
+- Open-source
+- Supported languages: Java, Python, Ruby, JavaScript, PHP, and C#
+- Has its own API based on WebDriver protocol
+
+**Cons**:
+
+- Debugging can be difficult due to the abstracted layers of the service (WebDriver, Appium server, device drivers, etc)
+
+- Interactions between the Appium server, WebDriver, and device drivers introduce latency.
+
+- Vendor Lock-in: Appium is a third-party service that can be discontinued at any time or their prices can be increased. This can lead to a vendor lock-in situation where the company is forced to pay higher prices or switch to another service. Switching to another service can be challanging since the company has to rewrite the tests and learn the new framework.
+
+### TestRigor
+
 ## 6.0 Conclusion
+
+Ideally, we would want to use testing frameworks that are popular and have a large community of developers. This ensures that the framework is well-maintained, has good documentation, and is easy to use. Additionally, we would want to use testing frameworks that are compatible with the technologies that we are using in our software application. This ensures that the framework can be easily integrated into our development process and that it can be used to test our software effectively. We also want to choose a testing service that has support for our chosen technologies and platforms, and that provides good performance and reliability.
+
+In my opinion, it will be better to use Playwright for end 2 end testing on web applications and the native flutter testing framework for mobile applications. This is because Playwright is a modern testing framework that is designed to work with modern web applications, and it provides good performance and reliability. The native flutter testing framework is designed to work with flutter applications, and it provides good performance and reliability. Additionally, both frameworks are well-maintained, have good documentation, and are easy to use. This makes them ideal choices for testing web and mobile applications.
+
+We need to find a service that can integrate with Playwright and the flutter test framework to manage the tests and provide additional features like test reporting, test scheduling, and test management. TestRigor is a good choice for this, as it provides support for both Playwright and the flutter test framework, and it provides good performance and reliability. Additionally, TestRigor provides good support for test reporting, test scheduling, and test management, which makes it an ideal choice for managing tests in a software development project.
