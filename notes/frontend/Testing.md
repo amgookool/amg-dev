@@ -112,6 +112,19 @@ Appium is a cross-platform mobile testing framework that enables automation of m
 
 Ideally, we would want to use testing frameworks that are popular and have a large community of developers. This ensures that the framework is well-maintained, has good documentation, and is easy to use. Additionally, we would want to use testing frameworks that are compatible with the technologies that we are using in our software application. This ensures that the framework can be easily integrated into our development process and that it can be used to test our software effectively. We also want to choose a testing service that has support for our chosen technologies and platforms, and that provides good performance and reliability.
 
-In my opinion, it will be better to use Playwright for end 2 end testing on web applications and the native flutter testing framework for mobile applications. This is because Playwright is a modern testing framework that is designed to work with modern web applications, and it provides good performance and reliability. The native flutter testing framework is designed to work with flutter applications, and it provides good performance and reliability. Additionally, both frameworks are well-maintained, have good documentation, and are easy to use. This makes them ideal choices for testing web and mobile applications.
+In my opinion, it will be better to use Playwright for simulating browser testing on web applications and the native flutter testing framework for mobile applications.
 
-We need to find a service that can integrate with Playwright and the flutter test framework to manage the tests and provide additional features like test reporting, test scheduling, and test management. TestRigor is a good choice for this, as it provides support for both Playwright and the flutter test framework, and it provides good performance and reliability. Additionally, TestRigor provides good support for test reporting, test scheduling, and test management, which makes it an ideal choice for managing tests in a software development project.
+Web application testing consists of unit tests using frameworks like `mocha` or `vitest` which allows the testing of individual components of the web application. Additionally, system tests can be done using `Playwright` to simulate user interactions with the web application.
+
+This is because Playwright is a modern testing framework that is designed to work with with all web applications, and it provides good performance and reliability.
+
+Mobile application testing consists of unit tests using the native flutter testing framework, which allows the testing of individual functions or classes of the mobile application. Widget testing is done to verify the behaviour of flutter widgets without running the app. System/Integration tests can be done using the native flutter testing framework to simulate user interactions with the mobile application.
+
+The native flutter testing framework is designed to work with flutter applications, and it provides good performance and reliability. Additionally, both frameworks are well-maintained, have good documentation, and are easy to use. This makes them ideal choices for testing web and mobile applications.
+
+We need to find a service that can integrate with Playwright and the flutter test framework to manage the tests and provide additional features like test reporting, test scheduling, and test management.
+
+## Possibility
+
+TestRigor is a good choice for this, as it provides support for both Playwright and the flutter test framework, and it provides good performance and reliability.
+Additionally, TestRigor provides good support for test reporting, test scheduling, and test management, which makes it an ideal choice for managing tests in a software development project.
