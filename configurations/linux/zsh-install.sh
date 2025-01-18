@@ -40,6 +40,9 @@ echo "Adding .zshrc configs"
 
     echo "# Starship Terminal"
     echo "alias starship-update='curl -sS https://starship.rs/install.sh | sh'"
-    echo 'eval "$(starship init zsh)"' 
+    echo 'eval "$(starship init zsh)"'
+    
+    echo "# ZSH Config"
+    echo "alias zshconfig='vim ~/.zshrc'" 
 
 } >> ~/.zshrc
