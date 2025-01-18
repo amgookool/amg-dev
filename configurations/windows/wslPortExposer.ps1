@@ -1,6 +1,19 @@
 # Prompt the user for input and validate it
 Write-Host "This script sets up a port proxy for forwarding traffic to WSL."
 
+# Get the protocol with TCP default
+do {
+    $protocol = Read-Host "Enter the protocol (tcp/udp) [default: tcp]"
+    if ($protocol -eq '') {
+        $protocol = 'tcp'
+        break
+    }
+    if (-not ($protocol -match '^(tcp|udp)$')) {
+        Write-Host "Invalid protocol. Please enter either 'tcp' or 'udp'." -ForegroundColor Red
+    }
+} while (-not ($protocol -match '^(tcp|udp)$'))
+
+
 # Get the listening port
 do {
     $listenPort = Read-Host "Enter the port you want to forward (listen port)"
@@ -28,7 +41,7 @@ Write-Host "WSL IP address detected: $wslIP"
 
 # Confirm and execute the command
 Write-Host "The following command will be executed:"
-$command = "netsh interface portproxy add v4tov4 listenport=$listenPort listenaddress=0.0.0.0 connectport=$connectPort connectaddress=$wslIP"
+$command = "netsh interface portproxy add v4tov4 listenport=$listenPort listenaddress=0.0.0.0 connectport=$connectPort connectaddress=$wslIP protocol=$protocol"
 Write-Host $command -ForegroundColor Yellow
 
 $confirmation = Read-Host "Do you want to proceed? (yes/no)"
