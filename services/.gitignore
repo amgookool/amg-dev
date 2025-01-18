@@ -6,3 +6,4 @@ caddy_config
 Caddyfile
 site/*
 portainer_data
+etc*
