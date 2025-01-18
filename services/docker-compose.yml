@@ -103,7 +103,6 @@ services:
             TZ: 'America/La_Paz'
 volumes:
     redis-data:
-        driver: local
     postgres-data:
     minio-data:
     caddy_data:
