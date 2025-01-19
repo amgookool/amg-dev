@@ -1,6 +1,7 @@
 import {} from "react";
 import { Box, Container } from "@mui/material";
-import { Link } from "@tanstack/react-router";
+import { Link as TanstackLink } from "@tanstack/react-router";
+import Link from "@mui/material/Link";
 import { Button } from "@mui/material";
 
 const Navbar = () => {
@@ -10,31 +11,42 @@ const Navbar = () => {
       sx={{
         px: 2,
         py: 0,
-        color: "primary.main",
+        width: "100%",
         display: "flex",
         justifyContent: "space-between",
         alignContent: "center",
       }}
     >
       <Container
-        sx={{ width: "100%", placeItems: "start", placeContent: "center" }}
+        sx={{
+          placeItems: "start",
+          placeContent: "center",
+          color: "primary.main",
+        }}
       >
-        <Link
+        <TanstackLink
           to="/"
           className="no-underline flex items-center justify-center gap-1.5"
         >
           <span className="iconify devicon--anaconda size-8"></span>
-          <h1>Adrian Gookool</h1>
-        </Link>
+          <h1 className="">Adrian Gookool</h1>
+        </TanstackLink>
       </Container>
-      <Container
-        sx={{ width: "100%", placeItems: "end", placeContent: "center" }}
-      >
-        <Link to="/projects" className="no-underline">
-          <Button variant="contained" color="secondary">
+      <Container sx={{ placeItems: "end", placeContent: "center" }}>
+        <TanstackLink
+          to="/projects"
+          className="no-underline flex items-center justify-center gap-1.5"
+        >
+          <Link
+            bgcolor="info"
+            underline="hover"
+            variant="button"
+            component={Button}
+            textAlign={"center"}
+          >
             Projects
-          </Button>
-        </Link>
+          </Link>
+        </TanstackLink>
       </Container>
     </Box>
   );
