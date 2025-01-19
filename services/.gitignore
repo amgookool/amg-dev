@@ -1,0 +1,9 @@
+redis-data
+postgres-data
+minio-data
+caddy_data
+caddy_config
+Caddyfile
+site/*
+portainer_data
+etc*
