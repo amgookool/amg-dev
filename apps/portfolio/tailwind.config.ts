@@ -5,11 +5,11 @@ Iconify Icons prefixes
 ! Place in addIconSelectors functions
 */
 import { addIconSelectors } from "@iconify/tailwind";
-
+import typography from "@tailwindcss/typography";
 export default {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {},
   },
-  plugins: [addIconSelectors(["logos", "devicon", "line-md"])],
+  plugins: [typography, addIconSelectors(["logos", "devicon", "line-md"])],
 } satisfies Config;
