@@ -1,22 +1,41 @@
 import {} from "react";
-import Box from "@mui/material/Box";
+import { Box, Container } from "@mui/material";
+import { Link } from "@tanstack/react-router";
+import { Button } from "@mui/material";
 
 const Navbar = () => {
   return (
     <Box
       component={"nav"}
       sx={{
-        px: 8,
-        py: 6,
-        color: "violet",
+        px: 2,
+        py: 0,
+        color: "primary.main",
         display: "flex",
         justifyContent: "space-between",
         alignContent: "center",
-        bgcolor: "darkslategray",
       }}
     >
-      <h1 className="bg-red-800">Navbar</h1>
-      <h1 className="bg-green-600">navbar2</h1>
+      <Container
+        sx={{ width: "100%", placeItems: "start", placeContent: "center" }}
+      >
+        <Link
+          to="/"
+          className="no-underline flex items-center justify-center gap-1.5"
+        >
+          <span className="iconify devicon--anaconda size-8"></span>
+          <h1>Adrian Gookool</h1>
+        </Link>
+      </Container>
+      <Container
+        sx={{ width: "100%", placeItems: "end", placeContent: "center" }}
+      >
+        <Link to="/projects" className="no-underline">
+          <Button variant="contained" color="secondary">
+            Projects
+          </Button>
+        </Link>
+      </Container>
     </Box>
   );
 };
