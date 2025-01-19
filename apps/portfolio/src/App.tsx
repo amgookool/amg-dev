@@ -1,16 +1,26 @@
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import './App.css'
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import Navbar from "./components/Navigation/Navbar";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-    <h1 className='text-8xl text-blue-500'>hello</h1> <h2 className='text-lg'>world!</h2>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Navbar />
+      </ThemeProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
