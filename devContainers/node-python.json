@@ -1,0 +1,103 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
+{
+	"name": "Node.js",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"configureZshAsDefaultShell": true,
+			"installOhMyZsh": false,
+			"installOhMyZshConfig": false,
+			"upgradePackages": true,
+			"username": "vscode"
+		},
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/devcontainers-extra/features/tmux-apt-get:1": {},
+		"ghcr.io/phil-bell/devcontainer-features/antigen:1": {
+			"theme": "awesomepanda",
+			"bundles": [
+				"zsh-users/zsh-syntax-highlighting",
+				"zsh-users/zsh-autosuggestions",
+				"git",
+				"oh-my-zsh",
+				"sudo",
+				"git-auto-fetch",
+				"command-not-found"
+			]
+		},
+		"ghcr.io/devcontainers/features/node:1": {
+			"installYarnUsingApt": false,
+			"nodeGypDependencies": true,
+			"version": "lts",
+			"pnpmVersion": "latest"
+		},
+		"ghcr.io/guiyomh/features/vim:0": {}
+	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": {},
+	"postStartCommand": {
+		"git-config-user.name": "git config --global user.name \"Adrian Gookool\"",
+		"git-config-user.email": "git config --global user.email \"amgookool@hotmail.com\"",
+		"starship-install": "chmod +x .devcontainer/starship-install.sh && /bin/bash .devcontainer/starship-install.sh",
+		"load-zhsconfig": "chmod +x .devcontainer/load-zsh.sh && /bin/bash .devcontainer/load-zsh.sh",
+		"nvm-integration": "chmod +x .devcontainer/load-nvmrc.sh && /bin/bash .devcontainer/load-nvmrc.sh"
+	},
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.fontFamily": "'CaskaydiaCove Nerd Font', 'FiraCode Nerd Font', 'FantasqueSansM Nerd Font'",
+				"terminal.integrated.cursorBlinking": true,
+				"terminal.integrated.cursorStyle": "block",
+				"git.autofetch": true,
+				"editor.fontLigatures": true,
+				"editor.fontFamily": "'FiraCode Nerd Font', 'CaskaydiaCove Nerd Font', 'FantasqueSansM Nerd Font'",
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"terminal.integrated.profiles.linux": {
+					"zsh": {
+						"path": "/bin/zsh"
+					},
+					"tmux": {
+						"path": "tmux",
+						"icon": "terminal-tmux"
+					}
+				}
+			},
+			"extensions": [
+				"esbenp.prettier-vscode",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"VisualStudioExptTeam.intellicode-api-usage-examples",
+				"GitHub.copilot",
+				"ecmel.vscode-html-css",
+				"ms-python.isort",
+				"redhat.vscode-yaml",
+				"christian-kohler.path-intellisense",
+				"donjayamanne.githistory",
+				"mhutchie.git-graph",
+				"bradlc.vscode-tailwindcss",
+				"aaron-bond.better-comments",
+				"redhat.vscode-xml",
+				"mikestead.dotenv",
+				"humao.rest-client",
+				"Gruntfuggly.todo-tree",
+				"waderyan.gitblame",
+				"tamasfe.even-better-toml",
+				"bierner.markdown-mermaid",
+				"svelte.svelte-vscode",
+				"jock.svg",
+				"ms-playwright.playwright",
+				"yzhang.markdown-all-in-one"
+			]
+		}
+	},
+	"remoteEnv": {
+		"GIT_TOKEN": "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"
+	}
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
