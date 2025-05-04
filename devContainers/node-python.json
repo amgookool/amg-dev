@@ -91,12 +91,14 @@
 				"svelte.svelte-vscode",
 				"jock.svg",
 				"ms-playwright.playwright",
-				"yzhang.markdown-all-in-one"
+				"yzhang.markdown-all-in-one",
+				"matthewpi.caddyfile-support",
+				"ms-azuretools.vscode-docker"
 			]
 		}
 	},
 	"remoteEnv": {
-		"GIT_TOKEN": "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"
+		"GIT_TOKEN": "GitHub access token"
 	}
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
