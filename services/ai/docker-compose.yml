@@ -1,0 +1,29 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      - '11434:11434'
+    volumes:
+      - ./ollama:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+  anythingllm:
+    image: mintplexlabs/anythingllm:latest
+    container_name: anythingLLM
+    restart: unless-stopped
+    ports:
+      - '3001:3001'
+    cap_add:
+      - SYS_ADMIN
+    volumes:
+      - ./anythingllm:/app/server/storage  # Persistent storage
+      - ./anythingllm/.env:/app/server/.env  # Environment file
+    environment:
+      - STORAGE_DIR=/app/server/storage  # Define storage path for app

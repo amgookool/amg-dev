@@ -7,3 +7,5 @@ Caddyfile
 site/*
 portainer_data
 etc*
+anythingllm
+ollama
