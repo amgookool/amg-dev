@@ -9,3 +9,7 @@ portainer_data
 etc*
 anythingllm
 ollama
+litellm
+litellm/config.yaml
+litellm-db
+openwebui
