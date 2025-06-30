@@ -11,14 +11,12 @@ This documentation consists of the following topics:
 1. Create a `Applications` directory in the `~` directory.
 
 2. Download the Flutter SDK from the official website or use vscode to download the SDK.
-   
+
    1. Using vsCode:
+
       1. Install the Flutter extension.
-      
       2. Open the command palette and search for `Flutter: Run Flutter Doctor`.
-      
       3. This will prompt you to download the SDK. Install it in the `Applications` directory.
-      
       4. Add the following to the `.bashrc` file:
          ```bash
          export PATH="$PATH:$HOME/Applications/flutter/bin"
@@ -27,22 +25,25 @@ This documentation consists of the following topics:
 3. Download Android Studio from the official website in the temporary directory.
 
 4. Extract the downloaded tar.gz file in the `Applications` directory.
-   1. Use command:
-     `tar -xvzf <filename>.tar.gz -C ~/Applications`
 
-6. Add the following to the .bashrc or .zshrc file:
+   1. Use command:
+      `tar -xvzf <filename>.tar.gz -C ~/Applications`
+
+5. Add the following to the .bashrc or .zshrc file:
+
    ```bash
    export ANDROID_HOME="$HOME/Android/Sdk"
    export PATH="$PATH:$ANDROID_HOME/emulator"
    export PATH="$PATH:$ANDROID_HOME/platform-tools"
    export PATH="$PATH:$ANDROID_HOME/build-tools"
    alias android-studio="$HOME/Applications/android-studio/bin/studio.sh"
-   ``` 
+   ```
 
-7. Install the required binaries given by [this link](https://developer.android.com/studio/install#64bit-libs)
+6. Install the required binaries given by [this link](https://developer.android.com/studio/install#64bit-libs)
+
    1. If it fails...don't worry, it's not necessary.
 
-8. Check wether KVM is installed
+7. Check wether KVM is installed
    1. Use the command to install cpi-checker package:
       `sudo apt-get install cpu-checker`
    2. Run command:
