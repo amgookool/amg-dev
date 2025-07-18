@@ -2,8 +2,15 @@
 	import { goto } from '$app/navigation';
 	import { BoardState } from '$lib/states/board.svelte';
 	import { PlayersState } from '$lib/states/players.svelte';
-	import { cn } from '$lib/utils';
 	import { blur, scale, slide } from 'svelte/transition';
+	import { cn } from '$lib';
+
+
+	type TileProps = {
+		value: 'X' | 'O' | null;
+		index: number;
+		isDisabled: boolean;
+	};
 
 	export const tilePlayerColor = (value: 'X' | 'O' | null) => {
 		if (value === 'X') return 'text-primary';
@@ -81,12 +88,6 @@
 </script>
 
 <script lang="ts">
-	type TileProps = {
-		value: 'X' | 'O' | null;
-		index: number;
-		isDisabled: boolean;
-	};
-
 	const navigateHome = () => {
 		PlayersState.reset();
 		BoardState.resetGame();
@@ -98,14 +99,13 @@
 	<button
 		onclick={() => handleTileClick(props.index)}
 		disabled={props.isDisabled}
-		class={cn(
+		class={[
 			'border-accent relative size-28 rounded-sm',
 			props.isDisabled && 'cursor-not-allowed',
-			tileBorderStyles(props.index),
 			BoardState.winningCombination.includes(props.index) && ''
-		)}
+		]}
 	>
-		<span class={cn('text-4xl font-semibold', tilePlayerColor(props.value))}>
+		<span class={['text-4xl font-semibold', tilePlayerColor(props.value)]}>
 			{props.value}
 		</span>
 	</button>
@@ -114,7 +114,7 @@
 {#snippet boardStrikes(winningCombination: number[])}
 	<div
 		transition:blur={{ duration: 600 }}
-		class={cn('bg-accent absolute', getStrikeThroughString(winningCombination))}
+		class={['bg-accent absolute', getStrikeThroughString(winningCombination)]}
 	></div>
 {/snippet}
 

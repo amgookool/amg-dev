@@ -1,3 +1,8 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss';
+@plugin "daisyui";
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@plugin "daisyui" {
+  themes: dark --prefersdark, synthwave, halloween, forest, pastel, wireframe, luxury, dracula, autumn, night, coffee, winter, dim;
+}
