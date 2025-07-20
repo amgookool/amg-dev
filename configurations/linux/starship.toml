@@ -18,20 +18,29 @@ symbol = "  "
 [buf]
 symbol = " "
 
+[bun]
+symbol = " "
+
 [c]
 symbol = " "
 
+[cpp]
+symbol = " "
+
+[cmake]
+symbol = " "
+
 [conda]
 symbol = " "
-format = "[$symbol$environment](dimmed green) "
-style = "bold green"
-ignore_base = false
 
 [crystal]
 symbol = " "
 
 [dart]
 symbol = " "
+
+[deno]
+symbol = " "
 
 [directory]
 read_only = " 󰌾"
@@ -50,6 +59,9 @@ symbol = " "
 
 [fossil_branch]
 symbol = " "
+
+[gcloud]
+symbol = "  "
 
 [git_branch]
 symbol = " "
@@ -116,6 +128,7 @@ Amazon = " "
 Android = " "
 Arch = " "
 Artix = " "
+CachyOS = " "
 CentOS = " "
 Debian = " "
 DragonFly = " "
@@ -137,6 +150,7 @@ MidnightBSD = " "
 Mint = " "
 NetBSD = " "
 NixOS = " "
+Nobara = " "
 OpenBSD = "󰈺 "
 openSUSE = " "
 OracleLinux = "󰌷 "
@@ -165,6 +179,9 @@ symbol = " "
 [pijul_channel]
 symbol = " "
 
+[pixi]
+symbol = "󰏗 "
+
 [python]
 symbol = " "
 format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
@@ -173,7 +190,6 @@ pyenv_prefix = "venv "
 python_binary = ["./venv/bin/python", "python", "python3", "python2"]
 detect_extensions = ["py"]
 version_format = "v${raw}"
-
 
 [rlang]
 symbol = "󰟔 "
